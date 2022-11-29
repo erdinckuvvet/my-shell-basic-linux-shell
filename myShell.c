@@ -164,7 +164,7 @@ void execx(char **tokenized)
 // Help command
 void Help()
 {
-	puts("\nLThe commands you can use are listed: "
+	puts("\nThe commands you can use are listed: "
 		 "\n>cat -- print arguments "
 		 "\n>ls -- list files"
 		 "\n>exit -- exist from program"
