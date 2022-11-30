@@ -6,17 +6,16 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-char *readLineByLine();
+char *readLine();
 int giveInput(char *str);
 void Clear();
 void showFiles();
 void cat(char *str);
-void callWithName(char **parsed);
-void Tekrar(char **parsed);
-void execx(char **parsed);
+void callWithName(char **tokenized);
+void execx(char **tokenized);
 void Help();
-int executeCommand(char **parsed);
-void processString(char *str, char **parsed);
+int executeCommand(char **tokenized);
+void processString(char *str, char **tokenized);
 
 int main()
 {
@@ -37,7 +36,7 @@ int main()
 int giveInput(char *str)
 {
 	char *buf;
-	buf = readLineByLine();
+	buf = readLine();
 	if (strlen(buf) != 0)
 	{
 		strcpy(str, buf);
@@ -50,7 +49,7 @@ int giveInput(char *str)
 }
 
 // read from args
-char *readLineByLine()
+char *readLine()
 {
 	char *line = (char *)malloc(sizeof(char) * 1024); //  memory allocation
 	char read;
@@ -107,6 +106,7 @@ void cat(char *str)
 {
 	printf("\ncat : %s\n", str);
 }
+
 // Command Execution by file name
 void callWithName(char **tokenized)
 {
@@ -129,6 +129,7 @@ void callWithName(char **tokenized)
 	else
 	{
 		// waiting for child
+		wait(NULL);
 		return;
 	}
 }
